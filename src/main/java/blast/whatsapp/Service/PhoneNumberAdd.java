@@ -12,8 +12,20 @@ public class PhoneNumberAdd extends PhoneNumber
     private PhoneNumberRepository phoneNumberRepository;
 
     @Override
-    public Page<Phone> getAll( Pageable pageable )
+    public Page<Phone> getAll( java.awt.print.Pageable pageable )
     {
-        return phoneNumberRepository.findAll(pageable);
+        return null;
+    }
+
+    @Override
+    public Phone add( Phone o )
+    {
+        return null;
+    }
+
+    @Override
+    public Phone getById( int id )
+    {
+        return null;
     }
 }

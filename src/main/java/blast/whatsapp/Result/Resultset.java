@@ -20,12 +20,12 @@ public class Resultset<T>
         this.timestamp = LocalDateTime.now();
     }
 
-    public Resultset(T o, HttpStatus status) throws ResourceNotFoundException
-    {
-        this();
-        if ( o == null || ( o instanceof List && ((List)o).isEmpty()))
-            throw new ResourceNotFoundException("No Content Found");
-        this.status = status;
-        this.data = o
-    }
+//    public Resultset(T o, HttpStatus status) throws ResourceNotFoundException
+//    {
+//        this();
+//        if ( o == null || ( o instanceof List && ((List)o).isEmpty()))
+//            throw new ResourceNotFoundException("No Content Found");
+//        this.status = status;
+//        this.data = o
+//    }
 }
