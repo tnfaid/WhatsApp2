@@ -34,6 +34,7 @@ public class Parts
         this.type = type;
     }
 
+
     public int getId()
     {
         return id;
