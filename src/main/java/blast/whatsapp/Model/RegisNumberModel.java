@@ -1,6 +1,7 @@
 package blast.whatsapp.Model;
 
 import blast.whatsapp.RegisListener;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.Data;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import javax.security.auth.message.config.RegistrationListener;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 @Data
@@ -23,11 +25,36 @@ public class RegisNumberModel implements Serializable
 
     @Column(name="PHONE")
     @NonNull
-    private String uri;
+    private String phone;
 
     @Column(name="UNIQUE_ID")
     @NonNull
+    private int uniqueId;
     private int name;
+
+    @JsonFormat(pattern = "dd MMM yyyy")
+    private Date inputDate;
+
+    public String getPhone()
+    {
+        return phone;
+    }
+
+    public void setPhone( String phone )
+    {
+        this.phone = phone;
+    }
+
+    public int getUniqueId()
+    {
+        return uniqueId;
+    }
+
+    public void setUniqueId( int uniqueId )
+    {
+        this.uniqueId = uniqueId;
+    }
+    private String uri;
 
 
     public RegisNumberModel()

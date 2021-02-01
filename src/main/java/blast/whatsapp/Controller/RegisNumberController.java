@@ -1,12 +1,15 @@
 package blast.whatsapp.Controller;
 
+import blast.whatsapp.Mapper.WebhookStatus;
 import blast.whatsapp.Model.RegisNumberModel;
 import blast.whatsapp.RegisDto;
 import blast.whatsapp.Service.RegisNumberService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 
 
 @RestController
@@ -21,9 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisNumberController
 {
     private static Logger log = LoggerFactory.getLogger(RegisNumberController.class);
+    HttpStatus status;
+    String info;
 
     @Autowired
     RegisNumberService regisNumberService;
+    private Object ResponseEntity;
 
     /**
      * {"status":200,"info":"200 OK"}
@@ -42,7 +49,22 @@ public class RegisNumberController
     }
 
 
-    public ResponseEntity<RegisNumberModel> registerUser( @RequestBody RegisNumberModel regisNumberModel )
+    public ResponseEntity<String> regisNumberModelResponseEntity( @RequestBody String param ) throws IOException
+    {
+        ObjectMapper mapper = new ObjectMapper();
+        WebhookStatus webhookStatus = null;
+        RegisNumberModel regisNumberModel = new RegisNumberModel();
+
+        regisNumberModel.setUniqueId(regisNumberModel.getName());
+        regisNumberModel.setPhone(regisNumberModel.getUri());
+
+
+        status = HttpStatus.ACCEPTED;
+        info = "200 OK";
+        return new ResponseEntity<String>(status, info);
+    }
+
+    @RequestBody RegisNumberModel regisNumberModel )
     {
 
 
