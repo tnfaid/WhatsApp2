@@ -3,13 +3,10 @@ package blast.whatsapp.Model;
 import blast.whatsapp.RegisListener;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NonNull;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.security.auth.message.config.RegistrationListener;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -26,36 +23,14 @@ public class RegisNumberModel implements Serializable
     @Column(name="PHONE")
     @NonNull
     private String phone;
+    private String uri;
 
     @Column(name="UNIQUE_ID")
-    @NonNull
-    private int uniqueId;
-    private int name;
+    private String uniqueId;
+    private String name;
 
     @JsonFormat(pattern = "dd MMM yyyy")
     private Date inputDate;
-
-    public String getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone( String phone )
-    {
-        this.phone = phone;
-    }
-
-    public int getUniqueId()
-    {
-        return uniqueId;
-    }
-
-    public void setUniqueId( int uniqueId )
-    {
-        this.uniqueId = uniqueId;
-    }
-    private String uri;
-
 
     public RegisNumberModel()
     {
@@ -63,17 +38,37 @@ public class RegisNumberModel implements Serializable
         this.name = name;
     }
 
+    public String getPhone()
+    {
+        return phone;
+    }
+
+    public String getUniqueId()
+    {
+        return uniqueId;
+    }
+
     public void setUri( String uri )
     {
         this.uri = uri;
     }
 
-    public void setName( int name )
+    public void setName( String name )
     {
         this.name = name;
     }
 
-    public int getName()
+    public void setPhone( String phone )
+    {
+        this.phone = phone;
+    }
+
+    public void setUniqueId( String uniqueId )
+    {
+        this.uniqueId = uniqueId;
+    }
+
+    public String getName()
     {
         return name;
     }

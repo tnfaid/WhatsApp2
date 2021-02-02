@@ -58,6 +58,7 @@ public class RegisNumberController
         regisNumberModel.setUniqueId(regisNumberModel.getName());
         regisNumberModel.setPhone(regisNumberModel.getUri());
 
+        String Result =  regisNumberModel.
 
         status = HttpStatus.ACCEPTED;
         info = "200 OK";
