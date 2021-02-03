@@ -3,6 +3,8 @@ package blast.whatsapp.Model;
 import blast.whatsapp.Model.SendMessage.Parts;
 import blast.whatsapp.Model.SendMessage.Receivers;
 
+import java.io.Serializable;
+
 /**
  *   "message": {
  *     "receivers": [
@@ -26,16 +28,55 @@ import blast.whatsapp.Model.SendMessage.Receivers;
  *   }
  * }
  **/
-public class SendTextModel
+
+public class SendTextModel implements Serializable
 {
     private final Receivers receivers;
     private final Parts parts;
+    String data, messageBody;
+    int size, messageBodySize;
 
-    public SendTextModel( Receivers receivers, Parts parts )
+
+    public void setData( String data )
     {
-        this.receivers = receivers;
-        this.parts = parts;
+        this.data = data;
     }
+
+    public void setMessageBody( String messageBody )
+    {
+        this.messageBody = messageBody;
+    }
+
+    public void setSize( int size )
+    {
+        this.size = size;
+    }
+
+    public void setMessageBodySize( int messageBodySize )
+    {
+        this.messageBodySize = messageBodySize;
+    }
+
+    public String getData()
+    {
+        return data;
+    }
+
+    public String getMessageBody()
+    {
+        return messageBody;
+    }
+
+    public int getSize()
+    {
+        return size;
+    }
+
+    public int getMessageBodySize()
+    {
+        return messageBodySize;
+    }
+
 
     public Receivers getReceivers()
     {
@@ -45,6 +86,22 @@ public class SendTextModel
     public Parts getParts()
     {
         return parts;
+    }
+
+    public SendTextModel( Receivers receivers, Parts parts )
+    {
+        this.receivers = receivers;
+        this.parts = parts;
+    }
+
+    public SendTextModel( Receivers receivers, Parts parts, String data, String messageBody, int size, int messageBodySize )
+    {
+        this.receivers = receivers;
+        this.parts = parts;
+        this.data = data;
+        this.messageBody = messageBody;
+        this.size = size;
+        this.messageBodySize = messageBodySize;
     }
 
 

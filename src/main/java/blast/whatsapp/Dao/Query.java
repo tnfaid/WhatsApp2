@@ -15,11 +15,14 @@ public class Query
 
     public static final String UPDATE_WEBHOOK_STATUS =
             "UPDATE WHATSAPP_NUMBER " +
-                    "SET WEBHOOK_" +
-                    "STATUS = ? " +
+                    "SET WEBHOOK_STATUS = ? " +
                     "WHERE WHATSAPP_ID = ? limit 1";
 
 
-//   public static final String SEND_TEXT =
+   public static final String SEND_TEXT =
+           "UPDATE WHATSAPP_NUMBER " +
+                   "SET DATA = ?, " +
+                   "SIZE = ? " +
+                   "WHERE PHONE = ? ";
 
 }

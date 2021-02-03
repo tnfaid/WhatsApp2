@@ -37,19 +37,23 @@ public class DbRepoBean implements IDatabaseRepo
     @Override
     public void RegisNumber( RegisNumberModel regisNumberModel )
     {
-        try
-        {
-            final String inserNumber = Query.
-        }
-        catch (final DataAccessException ex)
-        {
+        final String inserNumber = Query.INSERT_NUMBER;
+        Object[] param = new Object[]
+                {
+                        regisNumberModel.getUri(),
+                        regisNumberModel.getName()
+                };
 
-        }
+        sendTemplate.update(inserNumber, param);
     }
 
     @Override
     public void SendText( SendTextModel sendTextModel )
     {
-
+        sendTemplate.update(Query.SEND_TEXT,
+            new Object[]{
+                sendTextModel.getData(),
+                sendTextModel.getSize()
+        });
     }
 }
