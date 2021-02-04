@@ -51,7 +51,7 @@ public class RegisNumberController
 
     public ResponseEntity<String> regisNumberModelResponseEntity( @RequestBody String param ) throws IOException
     {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         WebhookStatus webhookStatus = null;
         RegisNumberModel regisNumberModel = new RegisNumberModel();
 

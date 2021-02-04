@@ -4,6 +4,10 @@ import blast.whatsapp.Model.SendMessage.Parts;
 import blast.whatsapp.Model.SendMessage.Receivers;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  *   "message": {
@@ -102,6 +106,17 @@ public class SendTextModel implements Serializable
         this.messageBody = messageBody;
         this.size = size;
         this.messageBodySize = messageBodySize;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("TextMessage Received");
+        sb.append("receivers ="+ getReceivers()+"\n");
+        sb.append("receivers ="+ getParts()+"\n");
+
+        return sb.toString();
     }
 
 

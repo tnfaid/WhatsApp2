@@ -64,4 +64,15 @@ public class Parts
     {
         return contentType;
     }
+
+    @Override
+    public String toString()
+    {
+        return getId() + ","
+                + getContentType() + ","
+                + getData() + ","
+                + getSize() + ","
+                + getType()+ ","
+                + getSort();
+    }
 }

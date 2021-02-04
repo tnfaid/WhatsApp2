@@ -1,10 +1,8 @@
 package blast.whatsapp.Model;
 
 import blast.whatsapp.RegisListener;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,19 +15,20 @@ import java.sql.Date;
 @JsonIgnoreProperties(value={"add"}, allowGetters = true)
 public class RegisNumberModel implements Serializable
 {
+
+    /**
+     * {
+     *   "uri": "whatsappsandbox://628990908032@whatsapp.com",
+     *   "name": "628990908032"
+     * }
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name="PHONE")
-    @NonNull
     private String phone;
     private String uri;
-
-    @Column(name="UNIQUE_ID")
-    private String uniqueId;
-    private String name;
-
-    @JsonFormat(pattern = "dd MMM yyyy")
+    private int uniqueId;
+    private int name;
     private Date inputDate;
 
     public RegisNumberModel()
@@ -38,12 +37,13 @@ public class RegisNumberModel implements Serializable
         this.name = name;
     }
 
+
     public String getPhone()
     {
         return phone;
     }
 
-    public String getUniqueId()
+    public int getUniqueId()
     {
         return uniqueId;
     }
@@ -53,7 +53,7 @@ public class RegisNumberModel implements Serializable
         this.uri = uri;
     }
 
-    public void setName( String name )
+    public void setName( int name )
     {
         this.name = name;
     }
@@ -63,12 +63,12 @@ public class RegisNumberModel implements Serializable
         this.phone = phone;
     }
 
-    public void setUniqueId( String uniqueId )
+    public void setUniqueId( int uniqueId )
     {
         this.uniqueId = uniqueId;
     }
 
-    public String getName()
+    public int getName()
     {
         return name;
     }
@@ -77,4 +77,11 @@ public class RegisNumberModel implements Serializable
     {
         return uri;
     }
+
+    @Override
+    public String toString()
+    {
+        return "uri : whatssappsanbox://"+getUri() + "@whatsapp.com, \n name :" + getName();
+    }
+
 }

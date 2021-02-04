@@ -28,6 +28,15 @@ public class Receivers
         this.type = type;
     }
 
+    @Override
+    public String toString()
+    {
+        return getName() + ", "
+                + getAddress() + ", "
+                + getConnector() + ", "
+                + getType();
+    }
+
 
     public String getName()
     {
