@@ -12,7 +12,7 @@ public class MessageParser
     private String delimiter;
     private String[] messageFragments;
 
-    public MessageParser( String message, String delimiter, String[] messageFragments )
+    public MessageParser()
     {
         super();
         this.message = message;

@@ -25,7 +25,7 @@ import java.io.IOException;
 public class RegisNumberController
 {
     private static Logger log = LoggerFactory.getLogger(RegisNumberController.class);
-    HttpStatus status;
+    String status;
     String info;
 
     @Autowired
@@ -54,15 +54,16 @@ public class RegisNumberController
         ObjectMapper objectMapper = new ObjectMapper();
         WebhookStatus webhookStatus = null;
         RegisNumberModel regisNumberModel = new RegisNumberModel();
+        RegisNumberService regisNumberService = new RegisNumberService();
 
         regisNumberModel.setUniqueId(regisNumberModel.getName());
         regisNumberModel.setPhone(regisNumberModel.getUri());
 
-        String Result =  regisNumberModel.
+        String Result = String.valueOf(regisNumberService.saveNumber(regisNumberModel));
 
-        status = HttpStatus.ACCEPTED;
+        status = Result;
         info = "200 OK";
-        return new ResponseEntity<String>(status, info);
+        return new ResponseEntity<String>(status, );
     }
 
     @RequestBody RegisNumberModel regisNumberModel )
