@@ -9,9 +9,11 @@ public class Query
                     "UNIQUE_ID, " +
                     "CREATED_AT, " +
                     "MESSAGE_TYPE, " +
-                    "WEBHOOK_STATUS)"+
+                    "WEBHOOK_STATUS, " +
+                    "DATA, " +
+                    "SIZE)"+
                     "VALUES " +
-                    "(?, ?, ?, ?, ?,?)";
+                    "(?, ?, ?, ?, ?, ?, ?,?)";
 
     public static final String UPDATE_WEBHOOK_STATUS =
             "UPDATE WHATSAPP_NUMBER " +

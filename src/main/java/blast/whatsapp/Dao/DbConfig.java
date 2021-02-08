@@ -28,8 +28,8 @@ public class DbConfig
 
 
     @Bean(name = "whatsAppDataSource")
-    DataSource initWhatsAppDataSource( @Value("${spring.datasource.number}") int poolSize,
-                                       @Value("${spring.datasource.username }") String username,
+    DataSource initWhatsAppDataSource( @Value("${spring.datasource.pool}") int poolSize,
+                                       @Value("${spring.datasource.username}") String username,
                                        @Value("${spring.datasource.password}") String password,
                                        @Value("${spring.datasource.url}") String url,
                                        @Value("${spring.datasource.driver-class-name}") String driverClass,

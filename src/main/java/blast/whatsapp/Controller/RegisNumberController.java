@@ -63,15 +63,15 @@ public class RegisNumberController
 
         status = Result;
         info = "200 OK";
-        return new ResponseEntity<String>(status, );
+        return new ResponseEntity<String>(status, HttpStatus.OK);
     }
 
-    @RequestBody RegisNumberModel regisNumberModel )
-    {
-
-
-        log.info("status :" + ResponseEntity.ok() + ", info :" + ResponseEntity.ok());
-        return ResponseEntity.ok(regisNumberModel);
-    }
+//    @RequestBody RegisNumberModel regisNumberModel )
+//    {
+//
+//
+//        log.info("status :" + ResponseEntity.ok() + ", info :" + ResponseEntity.ok());
+//        return ResponseEntity.ok(regisNumberModel);
+//    }
 
 }

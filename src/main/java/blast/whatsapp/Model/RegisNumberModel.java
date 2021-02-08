@@ -27,25 +27,25 @@ public class RegisNumberModel implements Serializable
 
     private String phone;
     private String uri;
-    private int uniqueId;
-    private int name;
+    private String unique_id;
+    private String name;
     private Date inputDate;
 
     public RegisNumberModel()
     {
         this.uri = uri;
         this.name = name;
+        this.unique_id = unique_id;
     }
-
 
     public String getPhone()
     {
         return phone;
     }
 
-    public int getUniqueId()
+    public String getUniqueId()
     {
-        return uniqueId;
+        return unique_id;
     }
 
     public void setUri( String uri )
@@ -53,7 +53,7 @@ public class RegisNumberModel implements Serializable
         this.uri = uri;
     }
 
-    public void setName( int name )
+    public void setName( String name )
     {
         this.name = name;
     }
@@ -63,12 +63,12 @@ public class RegisNumberModel implements Serializable
         this.phone = phone;
     }
 
-    public void setUniqueId( int uniqueId )
+    public void setUniqueId( String uniqueId )
     {
-        this.uniqueId = uniqueId;
+        this.unique_id = uniqueId;
     }
 
-    public int getName()
+    public String getName()
     {
         return name;
     }
