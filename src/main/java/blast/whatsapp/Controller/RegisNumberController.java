@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.Stack;
 
 
 @RestController
-@RequestMapping("/apiv2.unificationengine.com/v2/message")
+@RequestMapping(RegisNumberController.BASE_PATH)
 public class RegisNumberController
 {
+
+    public  final  static  String BASE_PATH = "connection";
     private static Logger log = LoggerFactory.getLogger(RegisNumberController.class);
     String status;
     String info;
@@ -35,7 +38,7 @@ public class RegisNumberController
     /**
      * {"status":200,"info":"200 OK"}
      */
-    @PostMapping(value = "/send", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public RegisNumberModel regisNumber(@RequestBody RegisNumberModel regisNumberModel)
     {
         RegisNumberModel returnValue = new RegisNumberModel();

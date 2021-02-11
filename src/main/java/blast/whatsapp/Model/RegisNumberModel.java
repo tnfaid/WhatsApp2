@@ -13,7 +13,7 @@ import java.sql.Date;
 @Table(name = "WHATSAPP_NUMBER")
 @EntityListeners(RegisListener.class)
 @JsonIgnoreProperties(value={"add"}, allowGetters = true)
-public class RegisNumberModel implements Serializable
+public class RegisNumberModel
 {
 
     /**

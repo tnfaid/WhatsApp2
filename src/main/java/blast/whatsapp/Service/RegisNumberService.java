@@ -8,13 +8,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.http.HttpResponse;
 
+@Component
 @Import(value = {DbConfig.class})
 public class RegisNumberService
 {
@@ -26,7 +30,7 @@ public class RegisNumberService
         MessageParser messageParser = new MessageParser();
         HttpHeaders header = new HttpHeaders();
         RestTemplate restTemplate = new RestTemplate();
-        String URLSend = "/apiv2.unificationengine.com/v2/message/send";
+        String URLSend = "URL_webhokk_ntar_pokoknya";
 
         header.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<String>(header);
