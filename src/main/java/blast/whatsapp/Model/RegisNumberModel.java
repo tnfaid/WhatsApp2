@@ -8,11 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
-@Entity
-@Data
-@Table(name = "WHATSAPP_NUMBER")
-@EntityListeners(RegisListener.class)
-@JsonIgnoreProperties(value={"add"}, allowGetters = true)
 public class RegisNumberModel
 {
 
@@ -30,13 +25,6 @@ public class RegisNumberModel
     private String unique_id;
     private String name;
     private Date inputDate;
-
-    public RegisNumberModel()
-    {
-        this.uri = uri;
-        this.name = name;
-        this.unique_id = unique_id;
-    }
 
     public String getPhone()
     {
@@ -81,7 +69,12 @@ public class RegisNumberModel
     @Override
     public String toString()
     {
-        return "uri : whatssappsanbox://"+getUri() + "@whatsapp.com, \n name :" + getName();
+        StringBuilder sb = new StringBuilder();
+        sb.append("'{");
+        sb.append("uri :  whatssappsanbox://" + getUri() + "@whatsapp.com \n");
+        sb.append("name : " + getName());
+        sb.append("}'");
+        return sb.toString();
     }
 
 }

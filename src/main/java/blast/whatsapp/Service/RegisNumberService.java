@@ -26,9 +26,11 @@ public class RegisNumberService
 
     public RegisNumberModel saveNumber(RegisNumberModel regisNumberModel) throws JsonProcessingException
     {
+        String accessKey = "12c50fbf-0c51-4fe6-9ecb-74bbe0109685:5d3da338-52d4-46ac-b1e4-b0e4430e0af4";
         log.debug("Register Number");
         MessageParser messageParser = new MessageParser();
         HttpHeaders header = new HttpHeaders();
+        header.setBasicAuth(accessKey);
         RestTemplate restTemplate = new RestTemplate();
         String URLSend = "URL_webhokk_ntar_pokoknya";
 
@@ -37,7 +39,7 @@ public class RegisNumberService
 
         try
         {
-            ResponseEntity<String> responseEntity = restTemplate.postForEntity(URLSend, request, String.class);
+            ResponseEntity<String> responseEntity = restTemplate.exchange(URLSend, HttpMethod.POST, request, String.class);
             String[] responseRegis = (responseEntity.getBody()).split("\n");
             String status = responseRegis[0];
 
