@@ -68,7 +68,7 @@ public class RegisNumberController
         String Result = String.valueOf(regisNumberService.saveNumber(regisNumberModel));
 
         status = Result;
-        info = "200 OK";
+        info = "{status : 200" + ", info : " + HttpStatus.OK + "} \n";
         return new ResponseEntity<String>(info, HttpStatus.OK);
     }
 
