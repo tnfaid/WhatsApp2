@@ -1,10 +1,14 @@
 package whatsapp.uib.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class RegisModel
 {
+    @JsonProperty(value = "uri")
+    private String uri;
 
-    String uri;
-    String name;
+    @JsonProperty(value = "name")
+    private String name;
 
     public RegisModel( String uri, String name )
     {
@@ -36,5 +40,14 @@ public class RegisModel
     {
         return "{'uri': '" + uri +"'" +
                 "'name' : '" + name +"'}";
+    }
+
+    @Override
+    public String toString()
+    {
+        return "RequestBodyStatusRegis{" +
+                "\"uri=\""+ uri +
+                "\"name=\""+ name +
+                '}';
     }
 }
