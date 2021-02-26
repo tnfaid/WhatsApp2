@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import whatsapp.uib.Model.RegisModel;
 
+import java.nio.charset.Charset;
 import java.util.Objects;
 
 public class RegisService
@@ -23,7 +24,7 @@ public class RegisService
     HttpEntity<String> request = new HttpEntity<>(header);
     Logger log = LoggerFactory.getLogger(RegisService.class);
 
-    public HttpStatus createRegis( RegisModel regisModel, Environment environment )
+    public RegisModel createRegis( RegisModel regisModel, Environment environment )
     {
         String url = param(environment, "https://apiv2.unificationengine.com/v2/connection/add");
         UriComponents builder = null;
@@ -52,16 +53,11 @@ public class RegisService
              * ketika berhasil nembak dan respon nya 200 maka berhasil gitu doang kan
              * lu cuma perlu set udah dapet name dan uri, kemudian set result ke 200
              * yaudah intinya ketika berhasil regis nmber ke uib, brarti status berhasil
-             * tapi kalo g berhasil ya gagal,
-             *
-             * terus apa bedanya sama codingan pak ghufron, iya gw bikin yang versi spring nya
-             * yang itu kan lietralli nembak using java udah gitu kan, nah gw nembak versi apaan java juga
-             * terus yang curl itu beneran buat hit nya, tetep kepake di code versi gw kan,
-             * jadi lu g bikin status disini, karena tugasnynya cuma detect uri dan name dan auth,
-             * kemudian ketika auth sesuai serta nama dan name maka dia dapat respon oke
              */
 
             log.debug(register.toString());
+
+            System.out.println("Berhasil yeyey tinggal lu tambhin case benar slah doang");
 
         }
         catch ( JsonMappingException e )
@@ -73,7 +69,7 @@ public class RegisService
             e.printStackTrace();
         }
 
-        return status;
+        return regisModel;
     }
 
 
@@ -81,6 +77,17 @@ public class RegisService
     private String param( Environment environment, String s )
     {
         return Objects.requireNonNull(environment.getProperty(s));
+    }
+
+    HttpHeaders createHeaders(String username, String password)
+    {
+        return new HttpHeaders()
+        {{
+            String auth = "12c50fbf-0c51-4fe6-9ecb-74bbe0109685" + ":" + "5d3da338-52d4-46ac-b1e4-b0e4430e0af4";
+            byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+            String authHeader = "Basic" + new String(encodedAuth);
+            set("Authorization", authHeader);
+        }};
     }
 
 }
