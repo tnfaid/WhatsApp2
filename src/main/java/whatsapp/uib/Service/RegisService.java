@@ -1,7 +1,6 @@
 package whatsapp.uib.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -14,7 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import whatsapp.uib.Model.RegisModel;
 
 import java.nio.charset.Charset;
+import java.util.Collections;
 import java.util.Objects;
+
 
 public class RegisService
 {
@@ -24,7 +25,7 @@ public class RegisService
     HttpEntity<String> request = new HttpEntity<>(header);
     Logger log = LoggerFactory.getLogger(RegisService.class);
 
-    public RegisModel createRegis( RegisModel regisModel, Environment environment )
+    public String createRegis( RegisModel regisModel, Environment environment )
     {
         String url = param(environment, "https://apiv2.unificationengine.com/v2/connection/add");
         UriComponents builder = null;
@@ -39,37 +40,36 @@ public class RegisService
         byte[] base64AuthBytes = Base64.encodeBase64(authBytes);
         String base64Auth = new String(base64AuthBytes);
 
+
         HttpHeaders headers = new HttpHeaders();
+        header.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.add("User-Agent", "Spring's RestTemplate");
         headers.add("Authorization", "Basic" + base64Auth);
 
+        System.out.println("Berhasil yeyey tinggal lu tambhin case benar slah doang");
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>("body", headers), String.class);
+        ObjectMapper mapper = new ObjectMapper();
+        RegisModel register = null;
         try
         {
-            ResponseEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, String.class);
-            ObjectMapper mapper = new ObjectMapper();
-            RegisModel register = mapper.readValue(response.getBody(), RegisModel.class);
-
-            /**
-             * cek dulu lah hasilnya apaan, kemudian yaudah
-             * ketika berhasil nembak dan respon nya 200 maka berhasil gitu doang kan
-             * lu cuma perlu set udah dapet name dan uri, kemudian set result ke 200
-             * yaudah intinya ketika berhasil regis nmber ke uib, brarti status berhasil
-             */
-
-            log.debug(register.toString());
-
-            System.out.println("Berhasil yeyey tinggal lu tambhin case benar slah doang");
-
-        }
-        catch ( JsonMappingException e )
-        {
-            e.printStackTrace();
+            register = mapper.readValue(response.getBody(), RegisModel.class);
         }
         catch ( JsonProcessingException e )
         {
             e.printStackTrace();
         }
 
-        return regisModel;
+        /**
+         * cek dulu lah hasilnya apaan, kemudian yaudah
+         * ketika berhasil nembak dan respon nya 200 maka berhasil gitu doang kan
+         * lu cuma perlu set udah dapet name dan uri, kemudian set result ke 200
+         * yaudah intinya ketika berhasil regis nmber ke uib, brarti status berhasil
+         */
+
+        log.debug(register.toString());
+
+        return response.getBody();
     }
 
 
@@ -89,5 +89,6 @@ public class RegisService
             set("Authorization", authHeader);
         }};
     }
+
 
 }

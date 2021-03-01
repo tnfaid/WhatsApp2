@@ -16,6 +16,10 @@ public class RegisModel
         this.name = name;
     }
 
+    public RegisModel( String s )
+    {
+    }
+
     public String getUri()
     {
         return uri;

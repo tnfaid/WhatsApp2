@@ -1,3 +1,5 @@
+package whatsapp.uib;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
